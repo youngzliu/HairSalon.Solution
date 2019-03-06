@@ -61,5 +61,71 @@ namespace HairSalon.Tests
       int result = newClient.GetStylistID();
       Assert.AreEqual(stylistID, result);
     }
+
+    [TestMethod]
+    public void SetFirstName_SetsFirstName_String(){
+      Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3, 8);
+
+      string newFirstName = "Kara";
+      newClient.SetFirstName(newFirstName);
+      string result = newClient.GetFirstName();
+
+      Assert.AreEqual(newFirstName, result);
+    }
+
+    [TestMethod]
+    public void SetLastName_SetsLastName_String(){
+      Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3, 8);
+
+      string newLastName = "Danvers";
+      newClient.SetLastName(newLastName);
+      string result = newClient.GetLastName();
+
+      Assert.AreEqual(newLastName, result);
+    }
+
+    [TestMethod]
+    public void SetPhoneNumber_SetsPhoneNumber_String(){
+      Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3, 8);
+
+      string newPhoneNumber = "390-275-3988";
+      newClient.SetPhoneNumber(newPhoneNumber);
+      string result = newClient.GetPhoneNumber();
+
+      Assert.AreEqual(newPhoneNumber, result);
+    }
+
+    [TestMethod]
+    public void SetEmail_SetsEmail_String(){
+      Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3, 8);
+
+      string newEmail = "bobfooATyahooDOTcom";
+      newClient.SetEmail(newEmail);
+      string result = newClient.GetEmail();
+
+      Assert.AreEqual(newEmail, result);
+    }
+
+    [TestMethod]
+    public void SetID_SetsID_Int(){
+      Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3, 8);
+
+      int newID = 9;
+      newClient.SetID(newID);
+      int result = newClient.GetID();
+
+      Assert.AreEqual(newID, result);
+    }
+
+    [TestMethod]
+    public void SetStylistID_SetsStylistID_Int(){
+      Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3, 8);
+
+      int newStylistID = 7;
+      newClient.SetStylistID(newStylistID);
+      int result = newClient.GetStylistID();
+
+      Assert.AreEqual(newStylistID, result);
+    }
   }
 }
