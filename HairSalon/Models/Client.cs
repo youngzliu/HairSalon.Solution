@@ -12,12 +12,12 @@ namespace HairSalon.Models
     private int MyID;
     private int MyStylistID;
 
-    public Client(string firstName, string lastName, string phoneNumber, string phoneNumber, string email, int ID, int StylistID){
+    public Client(string firstName, string lastName, string phoneNumber, string email, int ID, int StylistID){
       MyFirstName = firstName;
       MyLastName = lastName;
       MyPhoneNumber = phoneNumber;
       MyEmail = email;
-      myID = ID;
+      MyID = ID;
       MyStylistID = StylistID;
     }
 
