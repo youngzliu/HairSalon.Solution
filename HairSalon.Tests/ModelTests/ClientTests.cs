@@ -6,6 +6,10 @@ namespace HairSalon.Tests
   [TestClass]
   public class ClientTest
   {
-
+    [TestMethod]
+    public void ClientContstructor_CreatesInstanceOfClient_Client(){
+      Client newClient = new Client();
+      Assert.AreEqual(typeof(Client), newClient.GetType());
+    }
   }
 }
