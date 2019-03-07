@@ -11,6 +11,7 @@ namespace HairSalon.Models
     private string MyEmail;
     private int MyID;
     private int MyStylistID;
+    private static List<Client> AllClients = new List<Client>();
 
     public Client(string firstName, string lastName, string phoneNumber, string email, int ID, int StylistID){
       MyFirstName = firstName;
@@ -19,14 +20,8 @@ namespace HairSalon.Models
       MyEmail = email;
       MyID = ID;
       MyStylistID = StylistID;
+      AllClients.Add(this);
     }
-
-    public void SetFirstName(string firstName){ MyFirstName = firstName; }
-    public void SetLastName(string lastName){ MyLastName = lastName; }
-    public void SetPhoneNumber(string phoneNumber){ MyPhoneNumber = phoneNumber; }
-    public void SetEmail(string email){ MyEmail = email; }
-    public void SetID(int ID){ MyID = ID; }
-    public void SetStylistID(int stylistID){ MyStylistID = stylistID; }
 
     public string GetFirstName(){ return MyFirstName; }
     public string GetLastName(){ return MyLastName; }
@@ -34,5 +29,14 @@ namespace HairSalon.Models
     public string GetEmail(){ return MyEmail; }
     public int GetID(){ return MyID; }
     public int GetStylistID(){ return MyStylistID; }
+    public static List<Client> GetAll(){ return AllClients; }
+
+    public void SetFirstName(string firstName){ MyFirstName = firstName; }
+    public void SetLastName(string lastName){ MyLastName = lastName; }
+    public void SetPhoneNumber(string phoneNumber){ MyPhoneNumber = phoneNumber; }
+    public void SetEmail(string email){ MyEmail = email; }
+    public void SetID(int ID){ MyID = ID; }
+    public void SetStylistID(int stylistID){ MyStylistID = stylistID; }
+    public static void ClearAll(){ AllClients.Clear(); }
   }
 }

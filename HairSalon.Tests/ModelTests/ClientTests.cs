@@ -6,8 +6,10 @@ using System.Collections.Generic;
 namespace HairSalon.Tests
 {
   [TestClass]
-  public class ClientTest
+  public class ClientTest : IDisposable
   {
+    public void Dispose(){ Client.ClearAll(); }
+
     [TestMethod]
     public void ClientContstructor_CreatesInstanceOfClient_Client(){
       Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3, 8);
@@ -126,6 +128,25 @@ namespace HairSalon.Tests
       int result = newClient.GetStylistID();
 
       Assert.AreEqual(newStylistID, result);
+    }
+
+    [TestMethod]
+    public void GetAll_ReturnsEmptyList_ClientList(){
+      List<Client> newList = new List<Client>();
+      List<Client> result = Client.GetAll();
+      CollectionAssert.AreEqual(newList, result);
+    }
+
+    [TestMethod]
+    public void GetAll_ReturnsClients_ClientList()
+    {
+      Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3, 8);
+      Client newClient2 = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 7, 3);
+      List<Client> newList = new List<Client> { newClient, newClient2 };
+
+      List<Client> result = Client.GetAll();
+
+      CollectionAssert.AreEqual(newList, result);
     }
   }
 }

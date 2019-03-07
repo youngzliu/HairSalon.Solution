@@ -6,8 +6,10 @@ using System.Collections.Generic;
 namespace HairSalon.Tests
 {
   [TestClass]
-  public class StylistTest
+  public class StylistTest : IDisposable
   {
+    public void Dispose() { Stylist.ClearAll(); }
+
     [TestMethod]
     public void StylistConstructor_CreatesInstanceOfStylist_Stylist(){
       Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3);
@@ -131,6 +133,26 @@ namespace HairSalon.Tests
       List<Client> result = newStylist.GetClients();
 
       CollectionAssert.AreEqual(clientList, result);
+    }
+
+    [TestMethod]
+    public void GetAll_ReturnsEmptyList_StylistList()
+    {
+      List<Stylist> newList = new List<Stylist>();
+      List<Stylist> result = Stylist.GetAll();
+      CollectionAssert.AreEqual(newList, result);
+    }
+
+    [TestMethod]
+    public void GetAll_ReturnsItems_ItemList()
+    {
+      Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3);
+      Stylist newStylist2 = new Stylist("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 7);
+      List<Stylist> newList = new List<Stylist> { newStylist, newStylist2 };
+
+      List<Stylist> result = Stylist.GetAll();
+
+      CollectionAssert.AreEqual(newList, result);
     }
   }
 }
