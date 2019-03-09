@@ -7,5 +7,8 @@ namespace HairSalon.Controllers
   {
     [Route("/")]
     public ActionResult Index() { return View(); }
+
+    [Route("/form")]
+    public ActionResult Form() { return View(); }
   }
 }
