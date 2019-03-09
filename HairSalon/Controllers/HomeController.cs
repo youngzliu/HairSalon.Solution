@@ -10,5 +10,11 @@ namespace HairSalon.Controllers
 
     [Route("/form")]
     public ActionResult Form() { return View(); }
+
+    [Route("/stylist")]
+    public ActionResult Stylist(string firstName, string lastName, string phoneNumber, string email){
+      Stylist sty = new Stylist(firstName, lastName, phoneNumber, email, 1);
+      return View(sty);
+    }
   }
 }
