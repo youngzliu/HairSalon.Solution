@@ -25,9 +25,9 @@ namespace HairSalon.Tests
       }
 
       [TestMethod]
-      public void Form_ReturnsCorrectView_True(){
+      public void New_ReturnsCorrectView_True(){
         StylistsController controller = new StylistsController();
-        ActionResult indexView = controller.Form();
+        ActionResult indexView = controller.New();
         Assert.IsInstanceOfType(indexView, typeof(ViewResult));
       }
 
