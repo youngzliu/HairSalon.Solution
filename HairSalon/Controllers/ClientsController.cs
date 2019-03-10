@@ -23,36 +23,27 @@ namespace HairSalon.Controllers
       return View(stylist);
     }
 
-    // [HttpGet("/stylists")]
-    // public ActionResult Index() {
-    //   List<Stylist> allStylists = Stylist.GetAll();
-    //   return View(allStylists);
-    // }
-    //
-    // [HttpGet("/stylists/new")]
-    // public ActionResult New() { return View(); }
-    //
-    // [HttpPost("/stylists")]
-    // public ActionResult Create(string firstName, string lastName, string phoneNumber, string email){
-    //   Stylist sty = new Stylist(firstName, lastName, phoneNumber, email);
-    //   return RedirectToAction("Index");
-    // }
-    //
-    // [HttpPost("/stylists/delete")]
-    // public ActionResult DeleteAll(){
-    //   Stylist.ClearAll();
-    //   return View();
-    // }
-    //
-    // [HttpGet("/stylists/{id}")]
-    // public ActionResult Show(int id)
-    // {
-    //   Dictionary<string, object> model = new Dictionary<string, object>();
-    //   Stylist selectedStylist = Stylist.Find(id);
-    //   List<Client> stylistClients = selectedStylist.GetClients();
-    //   model.Add("stylist", selectedStylist);
-    //   model.Add("clients", stylistClients);
-    //   return View(model);
-    // }
+    [HttpGet("/stylists/{stylistID}/clients/{clientID}/edit")]
+    public ActionResult Edit(int stylistID, int clientID)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Stylist stylist = Stylist.Find(stylistID);
+      model.Add("stylist", stylist);
+      Client client = Client.Find(clientID);
+      model.Add("client", client);
+      return View(model);
+    }
+
+    [HttpPost("/stylists/{stylistID}/clients/{clientID}")]
+    public ActionResult Update(int stylistID, int clientID, string firstName, string lastName, string phoneNumber, string email)
+    {
+      Client client = Client.Find(clientID);
+      client.Edit(firstName, lastName, phoneNumber, email);
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Stylist stylist = Stylist.Find(stylistID);
+      model.Add("stylist", stylist);
+      model.Add("client", client);
+      return View("Show", model);
+    }
   }
 }
