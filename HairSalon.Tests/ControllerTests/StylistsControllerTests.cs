@@ -67,7 +67,22 @@ namespace HairSalon.Tests
         Stylist stylist = new Stylist("bob", "foo", "409-582-3251", "bobfooATgmailDOTcom");
         ViewResult indexView = controller.Show(1) as ViewResult;
         var result = indexView.ViewData.Model;
-        Assert.IsInstanceOfType(result, typeof(Stylist));
+        Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
+      }
+
+      [TestMethod]
+      public void Create_ReturnsCorrectView_True(){
+        StylistsController controller = new StylistsController();
+        ActionResult indexView = controller.Create(1, "bob", "foo", "409-582-3251", "bobfooATgmailDOTcom");
+        Assert.IsInstanceOfType(indexView, typeof(ViewResult));
+      }
+
+      [TestMethod]
+      public void Create_HasCorrectModelType_Dictionary(){
+        StylistsController controller = new StylistsController();
+        ViewResult indexView = controller.Create(1, "bob", "foo", "409-582-3251", "bobfooATgmailDOTcom") as ViewResult;
+        var result = indexView.ViewData.Model;
+        Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
       }
     }
 }

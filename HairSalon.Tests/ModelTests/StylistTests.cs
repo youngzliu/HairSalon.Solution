@@ -56,6 +56,17 @@ namespace HairSalon.Tests
     }
 
     [TestMethod]
+    public void GetClients_ReturnsEmptyList_ClientList()
+    {
+      Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
+      List<Client> newList = new List<Client>();
+
+      List<Client> result = newStylist.GetClients();
+
+      CollectionAssert.AreEqual(newList, result);
+    }
+
+    [TestMethod]
     public void GetClients_ReturnsClients_ListClient(){
       Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
       Client newClient = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 7);
@@ -126,13 +137,13 @@ namespace HairSalon.Tests
     [TestMethod]
     public void GetAll_ReturnsEmptyList_StylistList()
     {
-      List<Stylist> newList = new List<Stylist>();
       List<Stylist> result = Stylist.GetAll();
+      List<Stylist> newList = new List<Stylist>();
       CollectionAssert.AreEqual(newList, result);
     }
 
     [TestMethod]
-    public void GetAll_ReturnsItems_ItemList()
+    public void GetAll_ReturnsStylists_StylistList()
     {
       Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
       Stylist newStylist2 = new Stylist("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom");

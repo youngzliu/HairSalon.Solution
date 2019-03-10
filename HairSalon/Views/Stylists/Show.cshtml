@@ -1,14 +1,29 @@
 @{
   Layout = "_Layout";
 }
-
+@using HairSalon.Models;
 <h1>Stylist Details:</h1>
 
-<li><strong>@Model.GetFirstName() @Model.GetLastName()</a></strong></li>
+<li><strong>@Model["stylist"].GetFirstName() @Model["stylist"].GetLastName()</a></strong></li>
 <ul>
-  <li>@Model.GetPhoneNumber()</li>
-  <li>@Model.GetEmail()</li>
+  <li>Phone Number: @Model["stylist"].GetPhoneNumber()</li>
+  <li>Email: @Model["stylist"].GetEmail()</li>
 </ul>
 
+<h2>Clients of this stylist:</h2>
+<ul>
+  @if (Model["clients"].Count == 0){
+    <p>There are no clients for this stylist yet.</p>
+  }
+  else
+  {
+    @foreach (Client client in Model["clients"])
+    {
+      <li><strong><a href='/stylists/@Model["stylist"].GetID()/clients/@client.GetID()'>@client.GetFirstName() @client.GetLastName()</a></strong></li>
+    }
+  }
+</ul>
+
+<p><a href='/stylists/@Model["stylist"].GetID()/clients/new'>Add a new client to this stylist</a></p>
 <p><a href='/stylists/new'>Add another stylist</a></p>
 <p><a href='/stylists'>View all stylists</a></p>
