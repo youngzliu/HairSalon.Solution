@@ -17,7 +17,7 @@
         {
           @foreach (Stylist stylist in Model)
           {
-            <li><strong>@stylist.GetFirstName() @stylist.GetLastName()</strong></li>
+            <li><strong><a href='/stylists/@stylist.GetID()'>@stylist.GetFirstName() @stylist.GetLastName()</a></strong></li>
             <ul>
               <li>@stylist.GetPhoneNumber()</li>
               <li>@stylist.GetEmail()</li>
@@ -26,8 +26,10 @@
         }
       </ul>
       <a href="/stylists/new" class="btn btn-info">Add a stylist</a>
+      <br>
+      <br>
       <form action="/stylists/delete" method="post">
-        <button type="submit" name="button">Clear All Stylists</button>
+        <button type="submit" name="button" class="btn btn-danger">Clear All Stylists</button>
       </form>
     </div>
   </body>

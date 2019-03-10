@@ -52,5 +52,22 @@ namespace HairSalon.Tests
         ActionResult indexView = controller.DeleteAll();
         Assert.IsInstanceOfType(indexView, typeof(ViewResult));
       }
+
+      [TestMethod]
+      public void Show_ReturnsCorrectView_True(){
+        StylistsController controller = new StylistsController();
+        Stylist stylist = new Stylist("bob", "foo", "409-582-3251", "bobfooATgmailDOTcom");
+        ActionResult indexView = controller.Show(1);
+        Assert.IsInstanceOfType(indexView, typeof(ViewResult));
+      }
+
+      [TestMethod]
+      public void Show_HasCorrectModelType_Stylist(){
+        StylistsController controller = new StylistsController();
+        Stylist stylist = new Stylist("bob", "foo", "409-582-3251", "bobfooATgmailDOTcom");
+        ViewResult indexView = controller.Show(1) as ViewResult;
+        var result = indexView.ViewData.Model;
+        Assert.IsInstanceOfType(result, typeof(Stylist));
+      }
     }
 }

@@ -26,5 +26,12 @@ namespace HairSalon.Controllers
       Stylist.ClearAll();
       return View();
     }
+
+    [HttpGet("/stylists/{id}")]
+    public ActionResult Show(int id)
+    {
+      Stylist stylist = Stylist.Find(id);
+      return View(stylist);
+    }
   }
 }
