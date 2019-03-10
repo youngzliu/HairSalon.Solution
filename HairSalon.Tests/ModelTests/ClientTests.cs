@@ -136,5 +136,16 @@ namespace HairSalon.Tests
 
       CollectionAssert.AreEqual(newList, result);
     }
+
+    [TestMethod]
+    public void Find_ReturnsCorrectItem_Item()
+    {
+      Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3);
+      Client newClient2 = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 7);
+
+      Client result = Client.Find(2);
+
+      Assert.AreEqual(newClient2, result);
+    }
   }
 }

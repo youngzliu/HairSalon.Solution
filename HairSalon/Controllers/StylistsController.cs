@@ -13,7 +13,7 @@ namespace HairSalon.Controllers
     }
 
     [HttpGet("/stylists/new")]
-    public ActionResult Form() { return View(); }
+    public ActionResult New() { return View(); }
 
     [HttpPost("/stylists")]
     public ActionResult Create(string firstName, string lastName, string phoneNumber, string email){

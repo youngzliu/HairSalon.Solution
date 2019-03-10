@@ -37,5 +37,7 @@ namespace HairSalon.Models
     public void SetEmail(string email){ MyEmail = email; }
     public void SetStylistID(int stylistID){ MyStylistID = stylistID; }
     public static void ClearAll(){ AllClients.Clear(); }
+
+    public static Client Find(int searchID){ return AllClients[searchID - 1]; }
   }
 }

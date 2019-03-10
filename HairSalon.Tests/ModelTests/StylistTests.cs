@@ -142,5 +142,16 @@ namespace HairSalon.Tests
 
       CollectionAssert.AreEqual(newList, result);
     }
+
+    [TestMethod]
+    public void Find_ReturnsCorrectItem_Item()
+    {
+      Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
+      Stylist newStylist2 = new Stylist("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom");
+
+      Stylist result = Stylist.Find(2);
+
+      Assert.AreEqual(newStylist2, result);
+    }
   }
 }
