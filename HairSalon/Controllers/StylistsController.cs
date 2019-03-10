@@ -17,8 +17,14 @@ namespace HairSalon.Controllers
 
     [HttpPost("/stylists")]
     public ActionResult Create(string firstName, string lastName, string phoneNumber, string email){
-      Stylist sty = new Stylist(firstName, lastName, phoneNumber, email, 1);
+      Stylist sty = new Stylist(firstName, lastName, phoneNumber, email);
       return RedirectToAction("Index");
+    }
+
+    [HttpPost("/stylists/delete")]
+    public ActionResult DeleteAll(){
+      Stylist.ClearAll();
+      return View();
     }
   }
 }

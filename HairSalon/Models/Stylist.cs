@@ -13,14 +13,14 @@ namespace HairSalon.Models
     private List<Client> MyClients;
     private static List<Stylist> AllStylists = new List<Stylist>();
 
-    public Stylist(string firstName, string lastName, string phoneNumber, string email, int ID){
+    public Stylist(string firstName, string lastName, string phoneNumber, string email){
       MyFirstName = firstName;
       MyLastName = lastName;
       MyPhoneNumber = phoneNumber;
       MyEmail = email;
-      MyID = ID;
       MyClients = new List<Client>();
       AllStylists.Add(this);
+      MyID = AllStylists.Count;
     }
 
     public string GetFirstName(){ return MyFirstName; }
@@ -35,7 +35,6 @@ namespace HairSalon.Models
     public void SetLastName(string lastName){ MyLastName = lastName; }
     public void SetPhoneNumber(string phoneNumber){ MyPhoneNumber = phoneNumber; }
     public void SetEmail(string email){ MyEmail = email; }
-    public void SetID(int ID){ MyID = ID; }
     public void AddClient(Client c){ MyClients.Add(c); }
     public static void ClearAll(){ AllStylists.Clear(); }
   }
