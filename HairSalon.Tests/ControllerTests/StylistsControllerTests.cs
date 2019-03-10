@@ -27,8 +27,8 @@ namespace HairSalon.Tests
       [TestMethod]
       public void New_ReturnsCorrectView_True(){
         StylistsController controller = new StylistsController();
-        ActionResult indexView = controller.New();
-        Assert.IsInstanceOfType(indexView, typeof(ViewResult));
+        ActionResult newView = controller.New();
+        Assert.IsInstanceOfType(newView, typeof(ViewResult));
       }
 
       [TestMethod]
@@ -49,39 +49,39 @@ namespace HairSalon.Tests
       [TestMethod]
       public void Delete_ReturnsCorrectView_True(){
         StylistsController controller = new StylistsController();
-        ActionResult indexView = controller.DeleteAll();
-        Assert.IsInstanceOfType(indexView, typeof(ViewResult));
+        ActionResult deleteView = controller.DeleteAll();
+        Assert.IsInstanceOfType(deleteView, typeof(ViewResult));
       }
 
       [TestMethod]
       public void Show_ReturnsCorrectView_True(){
         StylistsController controller = new StylistsController();
         Stylist stylist = new Stylist("bob", "foo", "409-582-3251", "bobfooATgmailDOTcom");
-        ActionResult indexView = controller.Show(1);
-        Assert.IsInstanceOfType(indexView, typeof(ViewResult));
+        ActionResult showView = controller.Show(1);
+        Assert.IsInstanceOfType(showView, typeof(ViewResult));
       }
 
       [TestMethod]
       public void Show_HasCorrectModelType_Stylist(){
         StylistsController controller = new StylistsController();
         Stylist stylist = new Stylist("bob", "foo", "409-582-3251", "bobfooATgmailDOTcom");
-        ViewResult indexView = controller.Show(1) as ViewResult;
-        var result = indexView.ViewData.Model;
+        ViewResult showView = controller.Show(1) as ViewResult;
+        var result = showView.ViewData.Model;
         Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
       }
 
       [TestMethod]
       public void Create_ReturnsCorrectView_True(){
         StylistsController controller = new StylistsController();
-        ActionResult indexView = controller.Create(1, "bob", "foo", "409-582-3251", "bobfooATgmailDOTcom");
-        Assert.IsInstanceOfType(indexView, typeof(ViewResult));
+        ActionResult createView = controller.Create(1, "bob", "foo", "409-582-3251", "bobfooATgmailDOTcom");
+        Assert.IsInstanceOfType(createView, typeof(ViewResult));
       }
 
       [TestMethod]
       public void Create_HasCorrectModelType_Dictionary(){
         StylistsController controller = new StylistsController();
-        ViewResult indexView = controller.Create(1, "bob", "foo", "409-582-3251", "bobfooATgmailDOTcom") as ViewResult;
-        var result = indexView.ViewData.Model;
+        ViewResult createView = controller.Create(1, "bob", "foo", "409-582-3251", "bobfooATgmailDOTcom") as ViewResult;
+        var result = createView.ViewData.Model;
         Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
       }
     }
