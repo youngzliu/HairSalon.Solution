@@ -55,6 +55,7 @@ namespace HairSalon.Tests
     // [TestMethod]
     // public void GetID_ReturnsID_Int(){
     //   Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3);
+    //   newClient.Save();
     //   int result = newClient.GetID();
     //   Assert.AreEqual(1, result);
     // }
@@ -144,14 +145,14 @@ namespace HairSalon.Tests
     }
 
     [TestMethod]
-    public void Find_ReturnsCorrectItem_Item()
+    public void Find_ReturnsCorrectClientFromDatabase_Client()
     {
-      Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3);
-      Client newClient2 = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 7);
+      Client testClient = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 7);
+      testClient.Save();
 
-      Client result = Client.Find(2);
+      Client foundClient = Client.Find(testClient.GetID());
 
-      Assert.AreEqual(newClient2, result);
+      Assert.AreEqual(testClient, foundClient);
     }
 
     [TestMethod]
@@ -174,6 +175,22 @@ namespace HairSalon.Tests
       int testId = testClient.GetID();
 
       Assert.AreEqual(testId, result);
+    }
+
+    [TestMethod]
+    public void Edit_UpdatesClientInDatabase_String()
+    {
+      Client testClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3);
+      testClient.Save();
+      string altFirstName = "Kara";
+      string altLastName = "Danvers";
+      string altPhoneNumber = "603-682-9071";
+      string altEmail = "karadanversATgmailDOTcom";
+      Client altClient = new Client(altFirstName, altLastName, altPhoneNumber, altEmail, 3, testClient.GetID());
+
+      testClient.Edit(altFirstName, altLastName, altPhoneNumber, altEmail);
+
+      Assert.AreEqual(testClient, altClient);
     }
   }
 }

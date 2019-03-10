@@ -111,6 +111,43 @@ namespace HairSalon.Models
       }
     }
 
+    public void Edit(string newFirstName, string newLastName, string newPhoneNumber, string newEmail){
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE clients SET firstName = @firstName, lastName = @lastName, phoneNumber = @phoneNumber, email = @email WHERE ID = @searchId;";
+      MySqlParameter searchId = new MySqlParameter();
+      searchId.ParameterName = "@searchId";
+      searchId.Value = MyID;
+      cmd.Parameters.Add(searchId);
+      MySqlParameter firstName = new MySqlParameter();
+      firstName.ParameterName = "@firstName";
+      firstName.Value = newFirstName;
+      cmd.Parameters.Add(firstName);
+      MySqlParameter lastName = new MySqlParameter();
+      lastName.ParameterName = "@lastName";
+      lastName.Value = newLastName;
+      cmd.Parameters.Add(lastName);
+      MySqlParameter phoneNumber = new MySqlParameter();
+      phoneNumber.ParameterName = "@phoneNumber";
+      phoneNumber.Value = newPhoneNumber;
+      cmd.Parameters.Add(phoneNumber);
+      MySqlParameter email = new MySqlParameter();
+      email.ParameterName = "@email";
+      email.Value = newEmail;
+      cmd.Parameters.Add(email);
+      cmd.ExecuteNonQuery();
+      MyFirstName = newFirstName;
+      MyLastName = newLastName;
+      MyPhoneNumber = newPhoneNumber;
+      MyEmail = newEmail;
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
     public override bool Equals(System.Object otherItem){
       if (!(otherItem is Client))
       {
@@ -124,6 +161,39 @@ namespace HairSalon.Models
       }
     }
 
-    public static Client Find(int searchID){ return new Client("bla", "bla", "bla", "bla", 5); }
+    public static Client Find(int id){
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM clients WHERE ID = @thisID;";
+      MySqlParameter thisID = new MySqlParameter();
+      thisID.ParameterName = "@thisID";
+      thisID.Value = id;
+      cmd.Parameters.Add(thisID);
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      int clientID = 0;
+      string firstName = "";
+      string lastName = "";
+      string phoneNumber = "";
+      string email = "";
+      int stylistID = 0;
+      while (rdr.Read())
+      {
+        clientID = rdr.GetInt32(0);
+        firstName = rdr.GetString(1);
+        lastName = rdr.GetString(2);
+        phoneNumber = rdr.GetString(3);
+        email = rdr.GetString(4);
+        stylistID = rdr.GetInt32(0);
+      }
+      Client foundClient = new Client(firstName, lastName, phoneNumber, email, stylistID, clientID);
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return foundClient;
+    }
   }
 }
