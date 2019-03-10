@@ -1,32 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <title>Add a stylist:</title>
-    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Fill in the information for a stylist:</h1>
-      <form action="/stylists" method="post">
-        <div class="form-group">
-          <label for="firstName">First Name:</label>
-          <input id="firstName" name="firstName" type="text" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name:</label>
-          <input id="lastName" name="lastName" type="text" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="phoneNumber">Phone Number:</label>
-          <input id="phoneNumber" name="phoneNumber" type="text" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input id="email" name="email" type="text" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-info">Go!</button>
-      </form>
-    </div>
-  </body>
-</html>
+@{
+  Layout = "_Layout";
+}
+
+<h1>Fill in the information for a stylist:</h1>
+<form action="/stylists" method="post">
+  <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input id="firstName" name="firstName" type="text" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input id="lastName" name="lastName" type="text" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="phoneNumber">Phone Number:</label>
+    <input id="phoneNumber" name="phoneNumber" type="text" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input id="email" name="email" type="text" class="form-control" required>
+  </div>
+  <button type="submit" class="btn btn-info">Go!</button>
+</form>

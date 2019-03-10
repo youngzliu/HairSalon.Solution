@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Stylist Details</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  </head>
-  <body>
-    <div class="container">
-      <h1>Stylist Details:</h1>
+@{
+  Layout = "_Layout";
+}
 
-      <li><strong>@Model.GetFirstName() @Model.GetLastName()</a></strong></li>
-      <ul>
-        <li>@Model.GetPhoneNumber()</li>
-        <li>@Model.GetEmail()</li>
-      </ul>
+<h1>Stylist Details:</h1>
 
-      <p><a href='/stylists/new'>Add another stylist</a></p>
-      <p><a href='/stylists'>View all stylists</a></p>
-    </div>
-  </body>
-</html>
+<li><strong>@Model.GetFirstName() @Model.GetLastName()</a></strong></li>
+<ul>
+  <li>@Model.GetPhoneNumber()</li>
+  <li>@Model.GetEmail()</li>
+</ul>
+
+<p><a href='/stylists/new'>Add another stylist</a></p>
+<p><a href='/stylists'>View all stylists</a></p>
