@@ -10,6 +10,10 @@ namespace HairSalon.Tests
   {
     public void Dispose(){ Client.ClearAll(); }
 
+    public ClientTest(){
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=young_liu_test;";
+    }
+
     [TestMethod]
     public void ClientContstructor_CreatesInstanceOfClient_Client(){
       Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 8);
@@ -48,12 +52,12 @@ namespace HairSalon.Tests
       Assert.AreEqual(email, result);
     }
 
-    [TestMethod]
-    public void GetID_ReturnsID_Int(){
-      Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3);
-      int result = newClient.GetID();
-      Assert.AreEqual(1, result);
-    }
+    // [TestMethod]
+    // public void GetID_ReturnsID_Int(){
+    //   Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3);
+    //   int result = newClient.GetID();
+    //   Assert.AreEqual(1, result);
+    // }
 
     [TestMethod]
     public void GetStylistID_ReturnsStylistID_Int(){
@@ -130,6 +134,8 @@ namespace HairSalon.Tests
     {
       Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3);
       Client newClient2 = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 7);
+      newClient.Save();
+      newClient2.Save();
       List<Client> newList = new List<Client> { newClient, newClient2 };
 
       List<Client> result = Client.GetAll();
@@ -146,6 +152,15 @@ namespace HairSalon.Tests
       Client result = Client.Find(2);
 
       Assert.AreEqual(newClient2, result);
+    }
+
+    [TestMethod]
+    public void Equals_ReturnsTrueIfClientsAreSame_Client()
+    {
+      Client newClient = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 7);
+      Client newClient2 = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 7);
+
+      Assert.AreEqual(newClient, newClient2);
     }
   }
 }
