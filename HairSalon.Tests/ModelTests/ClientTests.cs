@@ -162,5 +162,18 @@ namespace HairSalon.Tests
 
       Assert.AreEqual(newClient, newClient2);
     }
+
+    [TestMethod]
+    public void Save_AssignsIDToClient_ID()
+    {
+      Client testClient = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 7);
+
+      testClient.Save();
+      Client savedClient = Client.GetAll()[0];
+      int result = savedClient.GetID();
+      int testId = testClient.GetID();
+
+      Assert.AreEqual(testId, result);
+    }
   }
 }

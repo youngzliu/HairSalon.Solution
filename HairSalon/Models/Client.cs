@@ -14,21 +14,21 @@ namespace HairSalon.Models
     private int MyStylistID;
     // private static List<Client> AllClients = new List<Client>();
 
-    public Client(string firstName, string lastName, string phoneNumber, string email, int stylistID){
+    public Client(string firstName, string lastName, string phoneNumber, string email, int stylistID, int ID = 0){
       MyFirstName = firstName;
       MyLastName = lastName;
       MyPhoneNumber = phoneNumber;
       MyEmail = email;
       MyStylistID = stylistID;
       // AllClients.Add(this);
-      // MyID = AllClients.Count;
+      MyID = ID;
     }
 
     public string GetFirstName(){ return MyFirstName; }
     public string GetLastName(){ return MyLastName; }
     public string GetPhoneNumber(){ return MyPhoneNumber; }
     public string GetEmail(){ return MyEmail; }
-    // public int GetID(){ return MyID; }
+    public int GetID(){ return MyID; }
     public int GetStylistID(){ return MyStylistID; }
     public static List<Client> GetAll(){
       List<Client> allClients = new List<Client>();
@@ -45,7 +45,7 @@ namespace HairSalon.Models
         string phoneNumber = rdr.GetString(3);
         string email = rdr.GetString(4);
         int stylistID = rdr.GetInt32(0);
-        Client newClient = new Client(firstName, lastName, phoneNumber, email, stylistID);
+        Client newClient = new Client(firstName, lastName, phoneNumber, email, stylistID, clientID);
         allClients.Add(newClient);
       }
 
@@ -102,6 +102,7 @@ namespace HairSalon.Models
       stylistID.Value = this.MyStylistID;
       cmd.Parameters.Add(stylistID);
       cmd.ExecuteNonQuery();
+      MyID = (int) cmd.LastInsertedId;
 
       conn.Close();
       if (conn != null)
@@ -118,7 +119,7 @@ namespace HairSalon.Models
       else
       {
         Client newClient = (Client) otherItem;
-        bool descriptionEquality = (this.GetFirstName() == newClient.GetFirstName() && this.GetLastName() == newClient.GetLastName() && this.GetPhoneNumber() == newClient.GetPhoneNumber() && this.GetEmail() == newClient.GetEmail());
+        bool descriptionEquality = (this.GetFirstName() == newClient.GetFirstName() && this.GetLastName() == newClient.GetLastName() && this.GetPhoneNumber() == newClient.GetPhoneNumber() && this.GetEmail() == newClient.GetEmail() && this.GetID() == newClient.GetID());
         return (descriptionEquality);
       }
     }
