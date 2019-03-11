@@ -55,13 +55,6 @@ namespace HairSalon.Tests
       Assert.AreEqual(email, result);
     }
 
-    // [TestMethod]
-    // public void GetID_ReturnsID_Int(){
-    //   Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
-    //   int result = newStylist.GetID();
-    //   Assert.AreEqual(1, result);
-    // }
-
     [TestMethod]
     public void GetClients_ReturnsEmptyList_ClientList()
     {
