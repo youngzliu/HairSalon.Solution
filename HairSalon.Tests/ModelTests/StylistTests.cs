@@ -8,7 +8,14 @@ namespace HairSalon.Tests
   [TestClass]
   public class StylistTest : IDisposable
   {
-    public void Dispose() { Stylist.ClearAll(); }
+    public void Dispose() {
+      Stylist.ClearAll();
+      Client.ClearAll();
+    }
+
+    public StylistTest(){
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=young_liu_test;";
+    }
 
     [TestMethod]
     public void StylistConstructor_CreatesInstanceOfStylist_Stylist(){
@@ -48,12 +55,12 @@ namespace HairSalon.Tests
       Assert.AreEqual(email, result);
     }
 
-    [TestMethod]
-    public void GetID_ReturnsID_Int(){
-      Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
-      int result = newStylist.GetID();
-      Assert.AreEqual(1, result);
-    }
+    // [TestMethod]
+    // public void GetID_ReturnsID_Int(){
+    //   Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
+    //   int result = newStylist.GetID();
+    //   Assert.AreEqual(1, result);
+    // }
 
     [TestMethod]
     public void GetClients_ReturnsEmptyList_ClientList()
@@ -69,9 +76,10 @@ namespace HairSalon.Tests
     [TestMethod]
     public void GetClients_ReturnsClients_ListClient(){
       Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
-      Client newClient = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 7);
+      newStylist.Save();
+      Client newClient = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", newStylist.GetID());
+      newClient.Save();
       List<Client> clientList = new List<Client> {newClient};
-      newStylist.AddClient(newClient);
 
       List<Client> result = newStylist.GetClients();
 
@@ -122,17 +130,17 @@ namespace HairSalon.Tests
       Assert.AreEqual(newEmail, result);
     }
 
-    [TestMethod]
-    public void AddClient_AddsClient_Client(){
-      Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
-      Client newClient = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 3);
-      List<Client> clientList = new List<Client> {newClient};
-
-      newStylist.AddClient(newClient);
-      List<Client> result = newStylist.GetClients();
-
-      CollectionAssert.AreEqual(clientList, result);
-    }
+    // [TestMethod]
+    // public void AddClient_AddsClient_Client(){
+    //   Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
+    //   Client newClient = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 3);
+    //   List<Client> clientList = new List<Client> {newClient};
+    //
+    //   newStylist.AddClient(newClient);
+    //   List<Client> result = newStylist.GetClients();
+    //
+    //   CollectionAssert.AreEqual(clientList, result);
+    // }
 
     [TestMethod]
     public void GetAll_ReturnsEmptyList_StylistList()
@@ -147,6 +155,8 @@ namespace HairSalon.Tests
     {
       Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
       Stylist newStylist2 = new Stylist("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom");
+      newStylist.Save();
+      newStylist2.Save();
       List<Stylist> newList = new List<Stylist> { newStylist, newStylist2 };
 
       List<Stylist> result = Stylist.GetAll();
@@ -155,14 +165,36 @@ namespace HairSalon.Tests
     }
 
     [TestMethod]
-    public void Find_ReturnsCorrectItem_Item()
+    public void Find_ReturnsCorrectStylistFromDatabase_Stylist()
     {
       Stylist newStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
+      newStylist.Save();
+
+      Stylist result = Stylist.Find(newStylist.GetID());
+
+      Assert.AreEqual(newStylist, result);
+    }
+
+    [TestMethod]
+    public void Equals_ReturnsTrueIfStylistsAreSame_Stylist()
+    {
+      Stylist newStylist = new Stylist("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom");
       Stylist newStylist2 = new Stylist("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom");
 
-      Stylist result = Stylist.Find(2);
+      Assert.AreEqual(newStylist, newStylist2);
+    }
 
-      Assert.AreEqual(newStylist2, result);
+    [TestMethod]
+    public void Save_AssignsIDToStylist_ID()
+    {
+      Stylist testStylist = new Stylist("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom");
+
+      testStylist.Save();
+      Stylist savedStylist = Stylist.GetAll()[0];
+      int result = savedStylist.GetID();
+      int testID = testStylist.GetID();
+
+      Assert.AreEqual(testID, result);
     }
   }
 }

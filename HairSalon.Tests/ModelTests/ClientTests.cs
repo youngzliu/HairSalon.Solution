@@ -52,14 +52,6 @@ namespace HairSalon.Tests
       Assert.AreEqual(email, result);
     }
 
-    // [TestMethod]
-    // public void GetID_ReturnsID_Int(){
-    //   Client newClient = new Client("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom", 3);
-    //   newClient.Save();
-    //   int result = newClient.GetID();
-    //   Assert.AreEqual(1, result);
-    // }
-
     [TestMethod]
     public void GetStylistID_ReturnsStylistID_Int(){
       int stylistID = 8;
@@ -172,9 +164,9 @@ namespace HairSalon.Tests
       testClient.Save();
       Client savedClient = Client.GetAll()[0];
       int result = savedClient.GetID();
-      int testId = testClient.GetID();
+      int testID = testClient.GetID();
 
-      Assert.AreEqual(testId, result);
+      Assert.AreEqual(testID, result);
     }
 
     [TestMethod]

@@ -44,7 +44,7 @@ namespace HairSalon.Models
         string lastName = rdr.GetString(2);
         string phoneNumber = rdr.GetString(3);
         string email = rdr.GetString(4);
-        int stylistID = rdr.GetInt32(0);
+        int stylistID = rdr.GetInt32(5);
         Client newClient = new Client(firstName, lastName, phoneNumber, email, stylistID, clientID);
         allClients.Add(newClient);
       }
@@ -156,8 +156,8 @@ namespace HairSalon.Models
       else
       {
         Client newClient = (Client) otherItem;
-        bool descriptionEquality = (this.GetFirstName() == newClient.GetFirstName() && this.GetLastName() == newClient.GetLastName() && this.GetPhoneNumber() == newClient.GetPhoneNumber() && this.GetEmail() == newClient.GetEmail() && this.GetID() == newClient.GetID());
-        return (descriptionEquality);
+        bool clientEquality = (this.GetFirstName() == newClient.GetFirstName() && this.GetLastName() == newClient.GetLastName() && this.GetPhoneNumber() == newClient.GetPhoneNumber() && this.GetEmail() == newClient.GetEmail() && this.GetID() == newClient.GetID()  && this.GetStylistID() == newClient.GetStylistID());
+        return (clientEquality);
       }
     }
 
@@ -184,7 +184,7 @@ namespace HairSalon.Models
         lastName = rdr.GetString(2);
         phoneNumber = rdr.GetString(3);
         email = rdr.GetString(4);
-        stylistID = rdr.GetInt32(0);
+        stylistID = rdr.GetInt32(5);
       }
       Client foundClient = new Client(firstName, lastName, phoneNumber, email, stylistID, clientID);
 

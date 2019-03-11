@@ -45,7 +45,7 @@ namespace HairSalon.Controllers
       Stylist foundStylist = Stylist.Find(stylistID);
       Client newClient = new Client(firstName, lastName, phoneNumber, email, stylistID);
       newClient.Save();
-      foundStylist.AddClient(newClient);
+      // foundStylist.AddClient(newClient);
       List<Client> stylistClients = foundStylist.GetClients();
       model.Add("stylist", foundStylist);
       model.Add("clients", stylistClients);
