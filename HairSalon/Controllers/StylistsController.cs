@@ -18,6 +18,7 @@ namespace HairSalon.Controllers
     [HttpPost("/stylists")]
     public ActionResult Create(string firstName, string lastName, string phoneNumber, string email){
       Stylist sty = new Stylist(firstName, lastName, phoneNumber, email);
+      sty.Save();
       return RedirectToAction("Index");
     }
 
