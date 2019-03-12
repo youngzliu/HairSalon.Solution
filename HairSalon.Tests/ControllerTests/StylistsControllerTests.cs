@@ -8,6 +8,9 @@ namespace HairSalon.Tests
 {
     [TestClass]
     public class StylistsControllerTest{
+      public StylistsControllerTest(){
+        DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=young_liu_test;";
+      }
 
       [TestMethod]
       public void Create_ReturnsCorrectActionType_RedirectToActionResult(){
