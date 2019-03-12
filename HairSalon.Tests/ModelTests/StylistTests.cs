@@ -201,5 +201,21 @@ namespace HairSalon.Tests
 
       CollectionAssert.AreEqual(emptyList, postDeleteStylists);
     }
+
+    [TestMethod]
+    public void Edit_UpdatesStylistInDatabase_String()
+    {
+      Stylist testStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
+      testStylist.Save();
+      string altFirstName = "Kara";
+      string altLastName = "Danvers";
+      string altPhoneNumber = "603-682-9071";
+      string altEmail = "karadanversATgmailDOTcom";
+      Stylist altStylist = new Stylist(altFirstName, altLastName, altPhoneNumber, altEmail, testStylist.GetID());
+
+      testStylist.Edit(altFirstName, altLastName, altPhoneNumber, altEmail);
+
+      Assert.AreEqual(testStylist, altStylist);
+    }
   }
 }

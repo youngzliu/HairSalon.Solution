@@ -115,7 +115,7 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"UPDATE clients SET firstName = @firstName, lastName = @lastName, phoneNumber = @phoneNumber, email = @email WHERE ID = @searchId;";
+      cmd.CommandText = @"UPDATE clients SET firstName = @firstName, lastName = @lastName, phoneNumber = @phoneNumber, email = @email WHERE ID = @searchID;";
       MySqlParameter searchId = new MySqlParameter();
       searchId.ParameterName = "@searchId";
       searchId.Value = MyID;

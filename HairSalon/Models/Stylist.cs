@@ -160,6 +160,43 @@ namespace HairSalon.Models
       }
     }
 
+    public void Edit(string newFirstName, string newLastName, string newPhoneNumber, string newEmail){
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"UPDATE stylists SET firstName = @firstName, lastName = @lastName, phoneNumber = @phoneNumber, email = @email WHERE ID = @searchID;";
+      MySqlParameter searchID = new MySqlParameter();
+      searchID.ParameterName = "@searchID";
+      searchID.Value = MyID;
+      cmd.Parameters.Add(searchID);
+      MySqlParameter firstName = new MySqlParameter();
+      firstName.ParameterName = "@firstName";
+      firstName.Value = newFirstName;
+      cmd.Parameters.Add(firstName);
+      MySqlParameter lastName = new MySqlParameter();
+      lastName.ParameterName = "@lastName";
+      lastName.Value = newLastName;
+      cmd.Parameters.Add(lastName);
+      MySqlParameter phoneNumber = new MySqlParameter();
+      phoneNumber.ParameterName = "@phoneNumber";
+      phoneNumber.Value = newPhoneNumber;
+      cmd.Parameters.Add(phoneNumber);
+      MySqlParameter email = new MySqlParameter();
+      email.ParameterName = "@email";
+      email.Value = newEmail;
+      cmd.Parameters.Add(email);
+      cmd.ExecuteNonQuery();
+      MyFirstName = newFirstName;
+      MyLastName = newLastName;
+      MyPhoneNumber = newPhoneNumber;
+      MyEmail = newEmail;
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
     public override bool Equals(System.Object otherStylist){
       if (!(otherStylist is Stylist))
       {
