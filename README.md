@@ -47,7 +47,12 @@ _This website allows you to manage stylists and clients in a hair salon._
 * _To run the website, navigate to the directory of HairSalon, and then build and run ($ cd WordCounter;
   $ dotnet restore; $ dotnet build; $ dotnet run)_
   * _Then navigate to http://localhost:5000 on your browser of choice._
-* _To run the tests, use these commands: $ cd WordCounter.Tests $ dotnet restore $ dotnet test_
+* _To run the tests, use these commands: $ cd HairSalon.Tests $ dotnet restore $ dotnet test_
+* _To recreate the database, run these commands:_
+  * >CREATE DATABASE young_liu;
+  * >USE young_liu;
+  * >CREATE TABLE clients ID serial PRIMARY KEY, firstName VARCHAR(255), lastName VARCHAR(255), phoneNumber VARCHAR(255), email VARCHAR(255), stylistID int;
+  * >CREATE TABLE stylists ID serial PRIMARY KEY, firstName VARCHAR(255), lastName VARCHAR(255) phoneNumber VARCHAR(255), email VARCHAR(255);
 
 ## Support and contact details
 
