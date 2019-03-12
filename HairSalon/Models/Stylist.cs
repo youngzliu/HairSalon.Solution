@@ -95,7 +95,7 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM stylists;";
+      cmd.CommandText = @"DELETE FROM stylists; DELETE FROM stylists_specialties;";
       cmd.ExecuteNonQuery();
       conn.Close();
       if (conn != null)
@@ -109,19 +109,19 @@ namespace HairSalon.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       var cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"DELETE FROM stylists WHERE ID = @thisID;";
+      cmd.CommandText = @"DELETE FROM stylists WHERE ID = @thisID; DELETE FROM clients WHERE stylistID = @thisID; DELETE from stylists_specialties WHERE stylist_ID = @thisID;";
       MySqlParameter thisID = new MySqlParameter();
       thisID.ParameterName = "@thisID";
       thisID.Value = this.MyID;
       cmd.Parameters.Add(thisID);
       cmd.ExecuteNonQuery();
-      var cmd2 = conn.CreateCommand() as MySqlCommand;
-      cmd2.CommandText = @"DELETE FROM clients WHERE stylistID = @stylistID;";
-      MySqlParameter stylistID = new MySqlParameter();
-      stylistID.ParameterName = "@stylistID";
-      stylistID.Value = this.MyID;
-      cmd2.Parameters.Add(stylistID);
-      cmd2.ExecuteNonQuery();
+      // var cmd2 = conn.CreateCommand() as MySqlCommand;
+      // cmd2.CommandText = @"DELETE FROM clients WHERE stylistID = @stylistID;";
+      // MySqlParameter stylistID = new MySqlParameter();
+      // stylistID.ParameterName = "@stylistID";
+      // stylistID.Value = this.MyID;
+      // cmd2.Parameters.Add(stylistID);
+      // cmd2.ExecuteNonQuery();
       conn.Close();
       if (conn != null)
       {
