@@ -25,5 +25,6 @@
 </ul>
 
 <p><a href='/stylists/@Model["stylist"].GetID()/clients/new'>Add a new client to this stylist</a></p>
-<p><a href='/stylists/new'>Add another stylist</a></p>
-<p><a href='/stylists'>View all stylists</a></p>
+<form action='/stylists/@Model["stylist"].GetID()/delete' method="post">
+  <button type="submit" name="button" class="btn btn-danger">Delete this stylist</button>
+</form>

@@ -87,5 +87,22 @@ namespace HairSalon.Tests
         var result = createView.ViewData.Model;
         Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
       }
+
+      [TestMethod]
+      public void Destroy_RedirectsToCorrectAction_Index(){
+        StylistsController controller = new StylistsController();
+        RedirectToActionResult actionResult = controller.Destroy(1) as RedirectToActionResult;
+        string result = actionResult.ActionName;
+        Assert.AreEqual(result, "Index");
+      }
+
+      [TestMethod]
+      public void Destroy_ReturnsCorrectActionType_RedirectToActionResult(){
+        StylistsController controller = new StylistsController();
+        IActionResult view = controller.Destroy(1);
+        Assert.IsInstanceOfType(view, typeof(RedirectToActionResult));
+      }
+
+
     }
 }

@@ -52,5 +52,11 @@ namespace HairSalon.Controllers
       model.Add("clients", stylistClients);
       return View("Show", model);
     }
+
+    [HttpPost("stylists/{stylistID}/delete")]
+    public ActionResult Destroy(int stylistID){
+      Stylist.Find(stylistID).Delete();
+      return RedirectToAction("Index");
+    }
   }
 }

@@ -189,5 +189,17 @@ namespace HairSalon.Tests
 
       Assert.AreEqual(testID, result);
     }
+
+    [TestMethod]
+    public void Delete_DeletesStylist_Stylist(){
+      Stylist testStylist = new Stylist("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom");
+      testStylist.Save();
+      List<Stylist> emptyList = new List<Stylist>();
+
+      testStylist.Delete();
+      List<Stylist> postDeleteStylists = Stylist.GetAll();
+
+      CollectionAssert.AreEqual(emptyList, postDeleteStylists);
+    }
   }
 }
