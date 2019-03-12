@@ -8,7 +8,11 @@ namespace HairSalon.Tests
   [TestClass]
   public class SpecialtyTest : IDisposable
   {
-    public void Dispose(){  }
+    public void Dispose(){
+      Specialty.ClearAll();
+      Client.ClearAll();
+      Stylist.ClearAll();
+    }
 
     public SpecialtyTest(){
       DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=young_liu_test;";
@@ -46,6 +50,40 @@ namespace HairSalon.Tests
 
       Assert.AreEqual(newDescription, result);
     }
+
+    [TestMethod]
+    public void AddStylist_AddsStylistToSpecialty_StylistList()
+    {
+      Specialty testSpecialty = new Specialty("Mullet");
+      testSpecialty.Save();
+      Stylist testStylist = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
+      testStylist.Save();
+
+      testSpecialty.AddStylist(testStylist);
+      List<Stylist> result = testSpecialty.GetStylists();
+      List<Stylist> testList = new List<Stylist>{testStylist};
+
+      CollectionAssert.AreEqual(testList, result);
+    }
+
+    [TestMethod]
+    public void GetStylists_ReturnsAllStylists_StylistList()
+    {
+      Specialty testSpecialty = new Specialty("Mullet");
+      testSpecialty.Save();
+      Stylist testStylist1 = new Stylist("Bob", "Foo", "607-499-0243", "bobfooATgmailDOTcom");
+      testStylist1.Save();
+      Stylist testStylist2 = new Stylist("Kara", "Danvers", "395-302-9820", "karadanversATgmailDOTcom");
+      testStylist2.Save();
+
+      testSpecialty.AddStylist(testStylist1);
+      List<Stylist> result = testSpecialty.GetStylists();
+      List<Stylist> testList = new List<Stylist> {testStylist1};
+
+      CollectionAssert.AreEqual(testList, result);
+    }
+
+
 
 
   }
