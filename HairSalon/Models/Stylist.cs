@@ -102,6 +102,7 @@ namespace HairSalon.Models
       {
         conn.Dispose();
       }
+      Client.ClearAll();
     }
 
     public void Delete(){
@@ -114,6 +115,13 @@ namespace HairSalon.Models
       thisID.Value = this.MyID;
       cmd.Parameters.Add(thisID);
       cmd.ExecuteNonQuery();
+      var cmd2 = conn.CreateCommand() as MySqlCommand;
+      cmd2.CommandText = @"DELETE FROM clients WHERE stylistID = @stylistID;";
+      MySqlParameter stylistID = new MySqlParameter();
+      stylistID.ParameterName = "@stylistID";
+      stylistID.Value = this.MyID;
+      cmd2.Parameters.Add(stylistID);
+      cmd2.ExecuteNonQuery();
       conn.Close();
       if (conn != null)
       {
