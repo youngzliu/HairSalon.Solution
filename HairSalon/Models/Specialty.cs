@@ -102,5 +102,42 @@ namespace HairSalon.Models
       }
       return allStylists;
     }
+
+    public static List<Specialty> GetAll(){
+      List<Specialty> allSpecialties = new List<Specialty>();
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM specialties;";
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+      while(rdr.Read()){
+        int ID = rdr.GetInt32(0);
+        string description = rdr.GetString(1);
+        Specialty newSpecialty = new Specialty(description, ID);
+        allSpecialties.Add(newSpecialty);
+      }
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+
+      return allSpecialties;
+    }
+
+    public override bool Equals(System.Object otherSpecialty){
+      if (!(otherSpecialty is Specialty))
+      {
+        return false;
+      }
+      else
+      {
+        Specialty newSpecialty = (Specialty) otherSpecialty;
+        bool specialtyEquality = (this.GetDescription() == newSpecialty.GetDescription() && this.GetID() == newSpecialty.GetID());
+        return (specialtyEquality);
+      }
+    }
   }
 }
