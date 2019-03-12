@@ -4,7 +4,7 @@
 @using HairSalon.Models;
 
 <h1>Client Details:</h1>
-<li><strong>@Model["client"].GetFirstName() @Model["client"].GetLastName()</a></strong></li>
+<li><strong>@Model["client"].GetFirstName() @Model["client"].GetLastName()</strong></li>
 <ul>
   <li>Phone Number: @Model["client"].GetPhoneNumber()</li>
   <li>Email: @Model["client"].GetEmail()</li>
@@ -12,5 +12,8 @@
 </ul>
 
 <p><a href='/stylists/@Model["stylist"].GetID()/clients/@Model["client"].GetID()/edit'>Edit this Client</a></p>
+<form action='/stylists/@Model["stylist"].GetID()/clients/@Model["client"].GetID()/delete' method="post">
+  <button type="submit" name="button" class="btn btn-danger">Delete this client</button>
+</form>
 <p><a href='/stylists/@Model["stylist"].GetID()/clients/new'>Add a new client to @Model["stylist"].GetFirstName() @Model["stylist"].GetLastName()</a></p>
 <p><a href='/stylists/@Model["stylist"].GetID()'>Return to @Model["stylist"].GetFirstName() @Model["stylist"].GetLastName()'s stylist page.</a><p>

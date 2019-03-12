@@ -132,5 +132,20 @@ namespace HairSalon.Tests
         var result = newView.ViewData.Model;
         Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
       }
+
+      [TestMethod]
+      public void Destroy_ReturnsCorrectView_True(){
+        StylistsController controller = new StylistsController();
+        ActionResult showView = controller.Destroy(1, 1);
+        Assert.IsInstanceOfType(showView, typeof(ViewResult));
+      }
+
+      [TestMethod]
+      public void Destroy_HasCorrectModelType_Dictionary(){
+        StylistsController controller = new StylistsController();
+        ViewResult newView = controller.Destroy(1, 1) as ViewResult;
+        var result = newView.ViewData.Model;
+        Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
+      }
     }
 }

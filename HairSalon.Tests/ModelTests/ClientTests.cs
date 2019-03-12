@@ -184,5 +184,17 @@ namespace HairSalon.Tests
 
       Assert.AreEqual(testClient, altClient);
     }
+
+    [TestMethod]
+    public void Delete_DeletesClient_Client(){
+      Client testClient = new Client("Kara", "Danvers", "603-682-9071", "karadanversATgmailDOTcom", 3);
+      testClient.Save();
+      List<Client> emptyList = new List<Client>();
+
+      testClient.Delete();
+      List<Client> postDeleteClients = Client.GetAll();
+
+      CollectionAssert.AreEqual(emptyList, postDeleteClients);
+    }
   }
 }
