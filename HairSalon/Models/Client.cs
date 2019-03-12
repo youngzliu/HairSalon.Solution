@@ -148,14 +148,14 @@ namespace HairSalon.Models
       }
     }
 
-    public override bool Equals(System.Object otherItem){
-      if (!(otherItem is Client))
+    public override bool Equals(System.Object otherClient){
+      if (!(otherClient is Client))
       {
         return false;
       }
       else
       {
-        Client newClient = (Client) otherItem;
+        Client newClient = (Client) otherClient;
         bool clientEquality = (this.GetFirstName() == newClient.GetFirstName() && this.GetLastName() == newClient.GetLastName() && this.GetPhoneNumber() == newClient.GetPhoneNumber() && this.GetEmail() == newClient.GetEmail() && this.GetID() == newClient.GetID()  && this.GetStylistID() == newClient.GetStylistID());
         return (clientEquality);
       }

@@ -42,7 +42,7 @@ namespace HairSalon.Tests
       }
 
       [TestMethod]
-      public void Index_HasCorrectModelType_ItemList(){
+      public void Index_HasCorrectModelType_StylistList(){
         StylistsController controller = new StylistsController();
         ViewResult indexView = controller.Index() as ViewResult;
         var result = indexView.ViewData.Model;

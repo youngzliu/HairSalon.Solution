@@ -188,14 +188,14 @@ namespace HairSalon.Models
         phoneNumber = rdr.GetString(3);
         email = rdr.GetString(4);
       }
-      Stylist foundClient = new Stylist(firstName, lastName, phoneNumber, email, stylistID);
+      Stylist foundStylist = new Stylist(firstName, lastName, phoneNumber, email, stylistID);
 
       conn.Close();
       if (conn != null)
       {
         conn.Dispose();
       }
-      return foundClient;
+      return foundStylist;
     }
   }
 }
