@@ -91,6 +91,29 @@ namespace HairSalon.Models
     public void SetPhoneNumber(string phoneNumber){ MyPhoneNumber = phoneNumber; }
     public void SetEmail(string email){ MyEmail = email; }
     // public void AddClient(Client c){ MyClients.Add(c); }
+
+    public void AddSpecialty(Specialty newSpecialty)
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO stylists_specialties (stylist_ID, specialty_ID) VALUES (@stylistID, @specialtyID);";
+      MySqlParameter stylist_ID = new MySqlParameter();
+      stylist_ID.ParameterName = "@stylistID";
+      stylist_ID.Value = MyID;
+      cmd.Parameters.Add(stylist_ID);
+      MySqlParameter specialty_ID = new MySqlParameter();
+      specialty_ID.ParameterName = "@specialtyID";
+      specialty_ID.Value = newSpecialty.GetID();
+      cmd.Parameters.Add(specialty_ID);
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
     public static void ClearAll(){
       MySqlConnection conn = DB.Connection();
       conn.Open();
@@ -158,6 +181,32 @@ namespace HairSalon.Models
       {
         conn.Dispose();
       }
+    }
+
+    public List<Specialty> GetSpecialties(){
+      List<Specialty> allSpecialties = new List<Specialty>{};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT specialties.* FROM stylists JOIN stylists_specialties ON (stylists.ID = stylists_specialties.stylist_ID) JOIN specialties ON (stylists_specialties.specialty_ID = specialties.ID) WHERE stylists.ID = (@stylistID);";
+      MySqlParameter stylistID = new MySqlParameter();
+      stylistID.ParameterName = "@stylistID";
+      stylistID.Value = MyID;
+      cmd.Parameters.Add(stylistID);
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        int specialtyID = rdr.GetInt32(0);
+        string description = rdr.GetString(1);
+        Specialty newSpecialty = new Specialty(description, specialtyID);
+        allSpecialties.Add(newSpecialty);
+      }
+      conn.Close();
+      if(conn!=null)
+      {
+        conn.Dispose();
+      }
+      return allSpecialties;
     }
 
     public void Edit(string newFirstName, string newLastName, string newPhoneNumber, string newEmail){

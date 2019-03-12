@@ -67,7 +67,7 @@ namespace HairSalon.Tests
     }
 
     [TestMethod]
-    public void GetStylists_ReturnsAllStylists_StylistList()
+    public void GetStylists_ReturnsAllStylistsWithSpecialty_StylistList()
     {
       Specialty testSpecialty = new Specialty("Mullet");
       testSpecialty.Save();
