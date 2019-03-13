@@ -21,5 +21,26 @@ namespace HairSalon.Controllers
       specialty.Save();
       return RedirectToAction("Index");
     }
+
+    [HttpGet("/specialties/{ID}")]
+    public ActionResult Show(int id){
+      Specialty specialty = Specialty.Find(id);
+      List<Stylist> stylists = specialty.GetStylists();
+      List<Stylist> allStylists = Stylist.GetAll();
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      model.Add("specialty", specialty);
+      model.Add("stylists", stylists);
+      model.Add("allStylists", allStylists);
+      return View(model);
+    }
+
+    [HttpPost("/specialties/{specialtyID}/stylists/new")]
+    public ActionResult AddStylist(int specialtyID, int stylistID)
+    {
+      Specialty specialty = Specialty.Find(specialtyID);
+      Stylist stylist = Stylist.Find(stylistID);
+      specialty.AddStylist(stylist);
+      return RedirectToAction("Show",  new { id = specialtyID });
+    }
   }
 }

@@ -48,5 +48,35 @@ namespace HairSalon.Tests
       string result = actionResult.ActionName;
       Assert.AreEqual(result, "Index");
     }
+
+    [TestMethod]
+    public void Show_ReturnsCorrectView_True(){
+      SpecialtiesController controller = new SpecialtiesController();
+      ActionResult showView = controller.Show(1);
+      Assert.IsInstanceOfType(showView, typeof(ViewResult));
+    }
+
+    [TestMethod]
+    public void Show_HasCorrectModelType_Dictionary(){
+      SpecialtiesController controller = new SpecialtiesController();
+      ViewResult showView = controller.Show(1) as ViewResult;
+      var result = showView.ViewData.Model;
+      Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
+    }
+
+    [TestMethod]
+    public void AddStylist_ReturnsCorrectActionType_RedirectToActionResult(){
+      SpecialtiesController controller = new SpecialtiesController();
+      IActionResult view = controller.AddStylist(1, 1);
+      Assert.IsInstanceOfType(view, typeof(RedirectToActionResult));
+    }
+
+    [TestMethod]
+    public void AddStylist_RedirectsToCorrectAction_Show(){
+      SpecialtiesController controller = new SpecialtiesController();
+      RedirectToActionResult actionResult = controller.AddStylist(1, 1) as RedirectToActionResult;
+      string result = actionResult.ActionName;
+      Assert.AreEqual(result, "Show");
+    }
   }
 }

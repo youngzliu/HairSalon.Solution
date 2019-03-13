@@ -96,5 +96,16 @@ namespace HairSalon.Tests
 
       CollectionAssert.AreEqual(newList, result);
     }
+
+    [TestMethod]
+    public void Find_ReturnsCorrectSpecialtyFromDatabase_Specialty()
+    {
+      Specialty newSpecialty = new Specialty("Mullet");
+      newSpecialty.Save();
+
+      Specialty result = Specialty.Find(newSpecialty.GetID());
+
+      Assert.AreEqual(newSpecialty, result);
+    }
   }
 }

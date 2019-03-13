@@ -127,6 +127,33 @@ namespace HairSalon.Models
       return allSpecialties;
     }
 
+    public static Specialty Find(int id){
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      var cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM specialties WHERE ID = @thisID;";
+      MySqlParameter thisID = new MySqlParameter();
+      thisID.ParameterName = "@thisID";
+      thisID.Value = id;
+      cmd.Parameters.Add(thisID);
+      var rdr = cmd.ExecuteReader() as MySqlDataReader;
+      int specialtyID = 0;
+      string description = "";
+      while (rdr.Read())
+      {
+        specialtyID = rdr.GetInt32(0);
+        description = rdr.GetString(1);
+      }
+      Specialty foundSpecialty = new Specialty(description, specialtyID);
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      return foundSpecialty;
+    }
+
     public override bool Equals(System.Object otherSpecialty){
       if (!(otherSpecialty is Specialty))
       {

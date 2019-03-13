@@ -147,5 +147,20 @@ namespace HairSalon.Tests
         var result = newView.ViewData.Model;
         Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
       }
+
+      [TestMethod]
+      public void AddSpecialty_ReturnsCorrectActionType_RedirectToActionResult(){
+        StylistsController controller = new StylistsController();
+        IActionResult view = controller.AddSpecialty(1, 1);
+        Assert.IsInstanceOfType(view, typeof(RedirectToActionResult));
+      }
+
+      [TestMethod]
+      public void AddSpecialty_RedirectsToCorrectAction_Show(){
+        StylistsController controller = new StylistsController();
+        RedirectToActionResult actionResult = controller.AddSpecialty(1,1) as RedirectToActionResult;
+        string result = actionResult.ActionName;
+        Assert.AreEqual(result, "Show");
+      }
     }
 }

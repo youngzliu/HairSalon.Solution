@@ -24,9 +24,34 @@
   }
 </ul>
 
+<h2>Specialties of this stylist:</h2>
+<ul>
+  @if (Model["stylist"].GetSpecialties().Count == 0){
+    <p>There are no specialties for this stylist yet.</p>
+  }
+  else
+  {
+    @foreach (Specialty specialty in Model["stylist"].GetSpecialties())
+    {
+      <li><strong><a href='/specialties/@specialty.GetID()'>@specialty.GetDescription()</a></strong></li>
+    }
+  }
+</ul>
+
 <p><a href='/stylists/@Model["stylist"].GetID()/clients/new'>Add a new client to this stylist</a></p>
 <a href='/stylists/@Model["stylist"].GetID()/edit' class="btn btn-info">Edit this stylist</a>
 <br>
+<br>
+<h4>Add a specialty to this stylist:</h4>
+<form action='/stylists/@Model["stylist"].GetID()/specialties/new' method="post">
+  <label for="specialtyID">Select a specialty:</label>
+  <select id="specialtyID" name="specialtyID" type="text">
+    @foreach (var specialty in @Model["specialties"]){
+      <option value="@specialty.GetID()">@specialty.GetDescription()</option>
+    }
+  </select>
+  <button type="submit" name="button" class="btn btn-success">Add</button>
+</form>
 <br>
 <form action='/stylists/@Model["stylist"].GetID()/delete' method="post">
   <button type="submit" name="button" class="btn btn-danger">Delete this stylist</button>
