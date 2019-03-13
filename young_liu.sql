@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 12, 2019 at 01:43 PM
+-- Generation Time: Mar 13, 2019 at 03:39 AM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -44,10 +44,10 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`ID`, `firstName`, `lastName`, `phoneNumber`, `email`, `stylistID`) VALUES
-(32, 'Pepper', 'Potts', '927-395-4022', 'pepperpotts@gmail.com', 4),
-(33, 'Star', 'Lord', '295-3029-7777', 'starlord@gmail.com', 5),
-(34, 'Scott', 'Lang', '820-4011-4920', 'scottlang@gmail.com', 7),
-(35, 'Jane', 'Foster', '361-133-9022', 'janefoster@gmail.com', 6);
+(45, 'Pepper', 'Potts', '305-204-2945', 'pepperpotts@gmail.com', 11),
+(46, 'Star', 'Lord', '402-592-0385', 'starlord@gmail.com', 12),
+(47, 'Jane', 'Foster', '508-743-2095', 'janefoster@gmail.com', 13),
+(48, 'Scott', 'Lang', '502-194-3952', 'scottlang@gmail.com', 14);
 
 -- --------------------------------------------------------
 
@@ -59,6 +59,15 @@ CREATE TABLE `specialties` (
   `ID` int(11) NOT NULL,
   `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `specialties`
+--
+
+INSERT INTO `specialties` (`ID`, `description`) VALUES
+(1, 'Short bob'),
+(2, 'Buzz cut'),
+(3, 'Mullet');
 
 -- --------------------------------------------------------
 
@@ -79,10 +88,10 @@ CREATE TABLE `stylists` (
 --
 
 INSERT INTO `stylists` (`ID`, `firstName`, `lastName`, `phoneNumber`, `email`) VALUES
-(4, 'Iron', 'Man', 'foooooooooo', 'foooooooooo@gmail.com'),
-(5, 'Gamora', 'Zen Whoberi Ben Titan', '233-582-6820', 'gamora@gmail.com'),
-(6, 'Thor', 'Son of Odin', '401-5837-0999', 'thunder@gmail.com'),
-(7, 'Hope', 'Pym', '320-189-2093', 'hopepym@gmail.com');
+(11, 'Iron', 'Man', '432-592-5900', 'ironman@gmail.com'),
+(12, 'Gamora', 'Zen Whoberi Ben Titan', '302-385-2992', 'gamora@gmail.com'),
+(13, 'Thor', 'Odinson', '834-589-2390', 'thor@gmail.com'),
+(14, 'Hope', 'Pym', '356-239-2950', 'hopepym@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -95,6 +104,15 @@ CREATE TABLE `stylists_specialties` (
   `stylist_ID` int(11) NOT NULL,
   `specialty_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `stylists_specialties`
+--
+
+INSERT INTO `stylists_specialties` (`ID`, `stylist_ID`, `specialty_ID`) VALUES
+(1, 11, 2),
+(2, 13, 3),
+(3, 14, 2);
 
 --
 -- Indexes for dumped tables
@@ -132,25 +150,25 @@ ALTER TABLE `stylists_specialties`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `specialties`
 --
 ALTER TABLE `specialties`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `stylists`
 --
 ALTER TABLE `stylists`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `stylists_specialties`
 --
 ALTER TABLE `stylists_specialties`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

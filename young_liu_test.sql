@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 12, 2019 at 01:44 PM
+-- Generation Time: Mar 13, 2019 at 03:40 AM
 -- Server version: 5.7.24-log
 -- PHP Version: 7.2.10
 
@@ -112,25 +112,25 @@ ALTER TABLE `stylists_specialties`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=351;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `specialties`
 --
 ALTER TABLE `specialties`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `stylists`
 --
 ALTER TABLE `stylists`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=265;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `stylists_specialties`
 --
 ALTER TABLE `stylists_specialties`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
