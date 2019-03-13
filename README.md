@@ -31,7 +31,45 @@ _This website allows you to manage stylists and clients in a hair salon._
 * _Website will allow you to clear all stylists._
   * _Example input: Click on the "Clear all stylists" button._
   * _Example output: All the stylists will be cleared._
-
+* _Website will allow you to clear a specific stylist._
+  * _Example input: Click on a stylist in the home page, and then click delete this stylist._
+  * _Example output: The stylist will be deleted._
+* _Website will allow you to clear all clients._
+  * _Example input: Click on see all clients in main page, and then click on delete all clients._
+  * _Example output: All clients will be deleted._
+* _Website will allow you to clear a specific client._
+  * _Example input: Click on a clients name in either the client overview, or when listed under a stylist. Then click delete this client._
+  * _Example output: The specified client will be deleted._
+* _Website will allow you to view all clients._
+  * _Example input: Click on see all clients in the main page._
+  * _Example output: All clients will be displayed._
+* _Website will allow you to edit the details of a stylist._
+  * _Example input: Click on a stylists name, then click on edit this stylist._
+  * _Example output: The specified stylist will have their details edited._
+* _Website will allow you to edit the details of a stylist._
+  * _Example input: Click on a stylists name, then click on edit this stylist._
+  * _Example output: The specified stylist will have their details edited._
+* _Website will allow you to view all specialties._
+  * _Example input: Click on see all specialties in the main page._
+  * _Example output: All specialties will be displayed._
+* _Website will allow you to add a specialty._
+  * _Example input: Click on see all specialties in the main page, then click add a specialty._
+  * _Example output: Gives a form allowing you to create a specialty._
+* _Website will allow you see stylists who have a certain specialty._
+  * _Example input: Click on a specialty in the specialty overview page or when listed under a stylist._
+  * _Example output: The website will display a page showing which stylists have that specialty._
+* _Website will allow you see the specialties of a specific stylist._
+  * _Example input: Click on a stylist._
+  * _Example output: The website will display their info page, which includes what specialties they have._
+* _Website will allow you see stylists who have a certain specialty._
+  * _Example input: Click on a specialty in the specialty overview page or when listed under a stylist._
+  * _Example output: The website will display a page showing which stylists have that specialty._
+* _Website will allow you to add a specialty to a stylist._
+  * _Example input: Click on a stylist, then select a specialty in the dropdown menu._
+  * _Example output: The specified specialty will be added to the stylist._
+* _Website will allow you to add a stylist to a specialty._
+  * _Example input: Click on a specialty in the specialty overview page or when listed under a stylist, then select a stylist in the dropdown menu._
+  * _Example output: The specified stylist will be added to the specialty._
 
 
 ## Setup/Installation Requirements
@@ -44,7 +82,7 @@ _This website allows you to manage stylists and clients in a hair salon._
   * _Select both of the above databases._
 * _Change into the work directory ($ cd HairSalon.Solution)_
 * _To edit the project, open the project in your preferred text editor._
-* _To run the website, navigate to the directory of HairSalon, and then build and run ($ cd WordCounter;
+* _To run the website, navigate to the directory of HairSalon, and then build and run ($ cd HairSalon;
   $ dotnet restore; $ dotnet build; $ dotnet run)_
   * _Then navigate to http://localhost:5000 on your browser of choice._
 * _To run the tests, use these commands: $ cd HairSalon.Tests $ dotnet restore $ dotnet test_
@@ -53,6 +91,8 @@ _This website allows you to manage stylists and clients in a hair salon._
   * >USE young_liu;
   * >CREATE TABLE clients ID serial PRIMARY KEY, firstName VARCHAR(255), lastName VARCHAR(255), phoneNumber VARCHAR(255), email VARCHAR(255), stylistID int;
   * >CREATE TABLE stylists ID serial PRIMARY KEY, firstName VARCHAR(255), lastName VARCHAR(255) phoneNumber VARCHAR(255), email VARCHAR(255);
+  * >CREATE TABLE specialties ID serial PRIMARY KEY, description VARCHAR(255);
+  * >CREATE TABLE stylists_specialties ID serial PRIMARY KEY, stylist_ID VARCHAR(255), specialty_ID VARCHAR(255);
 
 ## Support and contact details
 
